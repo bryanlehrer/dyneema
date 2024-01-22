@@ -39,15 +39,80 @@
     .glowing-text {
       font-family: 'arial';
       font-size: 100pt;
-      color: #000000;
-      text-shadow: 0 0 20px rgb(208, 255, 0); /* Adjust the shadow for the glowing effect */
+      color: #9f9f9f;
+      text-shadow: 0 0 20px rgb(89, 255, 0); /* Adjust the shadow for the glowing effect */
     }
+
+    .sun {
+    width: 140px; /* Adjust size to fit within padding */
+    height: 140px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 0, 1) 0%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0) 100%);
+    box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5);
+
+    position: absolute;
+    top: 30px; /* Position the top edge 30px from the top of the screen (within padding) */
+    right: 30px; /* Position the right edge 30px from the right of the screen (within padding) */
+    transform: translate(-50%, -50%);  /* Centers the sun horizontally and vertically */
+    animation: sun-glow 5s ease-in-out infinite;  /* Adds a subtle glowing animation */
+    }
+    
+    @keyframes sun-glow {
+    0% { box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5); }
+    50% { box-shadow: 0 0 80px 40px rgba(255, 255, 0, 0.8); }
+    100% { box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5); }
+    }
+
+    .sun2 {
+    width: 340px; /* Adjust size to fit within padding */
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 0, 1) 0%, rgba(255, 255, 0, 0.5) 50%, rgba(255, 255, 0, 0) 100%);
+    box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5);
+
+    position: absolute;
+    top: 90%; /* Position the bottom edge 10px from the top of the screen (within padding) */
+    left: auto; /* Position the right edge 30px from the right of the screen (within padding) */
+    transform: translate(-50%, -50%);  /* Centers the sun horizontally and vertically */
+    animation: sun-glow2 5s ease-in-out infinite;  /* Adds a subtle glowing animation */
+    }
+    
+    @keyframes sun-glow2 {
+    0% { box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5); }
+    50% { box-shadow: 0 0 80px 40px rgba(255, 255, 0, 0.8); }
+    100% { box-shadow: 0 0 40px 20px rgba(255, 255, 0, 0.5); }
+    }
+
+    .sun3 {
+    width: 240px; /* Adjust size to fit within padding */
+    height: 240px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgb(255, 17, 0) 0%, rgba(255, 102, 0, 0.5) 50%, rgba(255, 255, 0, 0) 100%);
+    box-shadow: 0 0 40px 20px rgba(255, 77, 0, 0.5);
+
+    position: absolute;
+    top: 100px; /* Position the top edge 30px from the top of the screen (within padding) */
+    left: 30px; /* Position the right edge 30px from the right of the screen (within padding) */
+    transform: translate(-50%, -50%);  /* Centers the sun horizontally and vertically */
+    animation: sun-glow3 5s ease-in-out infinite;  /* Adds a subtle glowing animation */
+    }
+    
+    @keyframes sun-glow3 {
+    0% { box-shadow: 0 0 40px 20px rgba(255, 72, 0, 0.5); }
+    50% { box-shadow: 0 0 80px 40px rgba(255, 153, 0, 0.8); }
+    100% { box-shadow: 0 0 40px 20px rgba(255, 25, 0, 0.5); }
+    }
+
   </style>
 </head>
 <body>
   <div class="overlay"></div>
   <div class="content">
-    <p class="glowing-text">Dyneema</p>
+    <p class="glowing-text">dyneema</p>
   </div>
+  <div class="sun"></div>
+  <div class="sun2"></div>
+  <div class="sun3"></div>
+
 </body>
 </html>
