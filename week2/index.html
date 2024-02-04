@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Clock</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #ffffff;
+      background: linear-gradient(180deg, #0066FF 0%, #6FA8FF 100%);
+      transition: background 1s ease-in-out; /* Add transition for smooth gradient change */
+    }
+
+    #countdown {
+      font-family: Arial;
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: 0em;
+      text-align: center;
+      position: absolute;
+      top: 10%;
+      width: 100%;
+    }
+
+    #countdown-text {
+      font-family: Arial;
+      font-size: 28px;
+      line-height: 41px;
+      letter-spacing: 0em;
+      text-align: center;
+      position: absolute;
+      top: 5%;
+      width: 100%;
+    }
+
+    #bar-container {
+      width: 80%;
+      display: flex;
+      align-items: center;
+      height: 20px;
+      position: relative;
+    }
+
+    #moon, #sun {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #moon {
+      left: 0;
+      background: radial-gradient(53.7% 53.7% at 64.81% 34.49%, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.188) 100%),
+                  linear-gradient(180deg, #FFFFFF 0%, #B7B7B7 100%);
+    }
+
+    #sun {
+      right: 0;
+      background: linear-gradient(0deg, #FCA600, #FCA600),
+                  linear-gradient(0deg, #FFB800, #FFB800);
+      border: 1px solid #FCA600;
+      box-shadow: 0px 0px 58.4px 8px #FFC700;
+    }
+
+    #horizontal-line {
+      width: 100%;
+      height: 1px;
+      background-color: #fff;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="countdown-text">A total solar eclipse happening on April 8th 2024</div>
+  <div id="countdown"></div>
+  
+  <div id="horizontal-line"></div>
+  
+  <div id="bar-container">
+    <div id="moon"></div>
+    <div id="sun"></div>
+  </div>
+
+  <script>
+    // Set the countdown date to April 8th, 2024
+    const countdownDate = new Date('April 8, 2024 00:00:00').getTime();
+    const daysInMilliseconds = 24 * 60 * 60 * 1000;
+    const totalDays = 64; // Approximate number of days between now and April 8th
+
+    // Update the countdown every 1 second
+    const countdownElement = document.getElementById('countdown');
+    const moonElement = document.getElementById('moon');
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      const daysRemaining = distance / daysInMilliseconds;
+      const moonPosition = ((totalDays - daysRemaining) * (100 / totalDays));
+
+      if (moonPosition >= 0 && moonPosition <= 100) {
+        moonElement.style.left = `${moonPosition}%`;
+      } else {
+        moonElement.style.left = '0%';
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      
+      // Calculate the percentage of time remaining
+      const timePercentage = 100 - ((distance / (totalDays * daysInMilliseconds)) * 100);
+
+      // Calculate the gradient colors based on time remaining
+      const gradientColor1 = `linear-gradient(0deg, #000000, #000000)`;
+      const gradientColor2 = `radial-gradient(85.03% 85.03% at 50% 50%, #000000 0%, #182C4A 100%)`;
+      const gradientColor3 = `radial-gradient(62.57% 102.14% at 86.41% 36.2%, rgba(0, 0, 0, 0.2) 3.89%, rgba(255, 255, 255, 0.038) 30.68%, rgba(0, 179, 255, 0.2) 100%)`;
+
+      // Apply the dynamic gradient background
+      bodyElement.style.background = `${gradientColor1}, ${gradientColor2}, ${gradientColor3}`;
+
+    }, 1000);
+  </script>
+
+</body>
+</html>
